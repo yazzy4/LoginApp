@@ -14,7 +14,7 @@ class ViewController: UIViewController {
     
     let correctUsername = "Yass"
     let correctPassword = "pass123"
-    
+
     
     @IBAction func didPressLoginButton(_ sender: Any) {
         
@@ -28,7 +28,9 @@ class ViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: deadline) {
             print("Login pressed")
             
-            self.performSegue(withIdentifier: "segue.Main.loginToMainApp", sender: self.usernameTextField.text)
+            let user = User(name: "Yaz", age: 31)
+            
+            self.performSegue(withIdentifier: "segue.Main.loginToMainApp", sender: user)
         }
 
     }
@@ -50,8 +52,8 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if let detailVC = segue.destination as? DetailViewController, let username = sender as? String {
-            detailVC.username = username
+        if let detailVC = segue.destination as? DetailViewController, let user = sender as? User {
+            detailVC.user = user
         }
     }
     
